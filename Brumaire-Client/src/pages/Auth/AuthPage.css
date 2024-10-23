@@ -1,0 +1,79 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgb(0, 0, 0);
+}
+
+.auth-card {
+  width: 400px;
+  background-color: #121223;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0px 20px 82px rgba(53, 53, 54, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  color: #fcfcfc;
+  margin-bottom: 20px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1f1f2b;
+  color: #fcfcfc;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.auth-input::placeholder {
+  color: #a2a2ad;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #1969ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background-color 0.3s;
+}
+
+.auth-button:hover {
+  background-color: #1457cc;
+}
+
+.auth-toggle {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #a2a2ad;
+  cursor: pointer;
+  text-align: center;
+}
+
+.auth-toggle:hover {
+  color: #ffffff;
+}
+
+.auth-logo {
+  width: 80px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 20px; /* Space between the logo and the title */
+}

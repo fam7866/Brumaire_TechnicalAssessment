@@ -8,6 +8,8 @@ import { ExpandMore, Search as SearchIcon } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+import { signOut } from '../../utils/authService';
+import { auth } from '../../utils/authService';
 import WalletConnectActions from 'actions/walletconnect.actions';
 import AuthActions from 'actions/auth.actions';
 import ModalActions from 'actions/modal.actions';
@@ -78,6 +80,8 @@ const Header = ({ border }) => {
   const [tokens, setTokens] = useState([]);
   const [bundles, setBundles] = useState([]);
   const [tokenDetailsLoading, setTokenDetailsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const timer = useRef(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -107,11 +111,24 @@ const Header = ({ border }) => {
   };
 
   useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('User is authenticated, setting state to true');
+        setIsAuthenticated(true);
+      } else {
+        console.log('User is not authenticated, setting state to false');
+        setIsAuthenticated(false);
+      }
+      setLoading(false);
+    });
+
     if (account) {
       init();
     } else {
       handleSignOut();
     }
+
+    return () => unsubscribe();
   }, [account, chainId]);
 
   const handleConnectWallet = () => {
@@ -209,6 +226,15 @@ const Header = ({ border }) => {
     dispatch(WalletConnectActions.disconnectWallet());
     dispatch(AuthActions.signOut());
     handleMenuClose();
+  };
+
+  const handleaccountSignOut = () => {
+    signOut();
+    deactivate();
+    dispatch(WalletConnectActions.disconnectWallet());
+    dispatch(AuthActions.signOut());
+    handleMenuClose();
+    window.location.reload();
   };
 
   const handleProfileMenuOpen = e => {
@@ -385,8 +411,17 @@ const Header = ({ border }) => {
             <div key={4} className={styles.menuSeparator} />,
           ]
         : null}
+      {!isAuthenticated ? (
+        <div className={styles.signOut} onClick={() => {}}>
+          Sign In
+        </div>
+      ) : (
+        <div className={styles.signOut} onClick={handleaccountSignOut}>
+          Log Out
+        </div>
+      )}
       <div className={styles.signOut} onClick={handleSignOut}>
-        Sign Out
+        Remove Account
       </div>
     </Menu>
   );

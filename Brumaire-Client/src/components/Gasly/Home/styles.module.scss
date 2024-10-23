@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
-  background-color: #090C10;
-  color: #EAEAF1;
+  background-color: #090c10;
+  color: #eaeaf1;
 }
 
 .main {
@@ -76,33 +76,31 @@
   line-height: 43.57px;
   letter-spacing: -0.015em;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   width: 75%;
 
   span {
     font-family: 'Inter' !important;
     font-weight: 800;
-    color: #3D80FF;
+    color: #3d80ff;
   }
 }
 
 @media only screen and (max-width: 1000px) {
-
   .sign {
     top: 60px;
   }
-  
+
   .logo {
     bottom: 40px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-
   .sign {
     top: 30px;
   }
-  
+
   .logo {
     bottom: 20px;
   }
